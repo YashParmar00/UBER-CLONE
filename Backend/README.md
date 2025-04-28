@@ -1,3 +1,4 @@
+
 # User Registration Endpoint Documentation
 
 ## Endpoint: `/users/register`
@@ -64,6 +65,84 @@ The following fields are required in the request body:
 },
 "email": "john.doe@example.com",
 "password": "password123"
+}
+```
+
+#### Example Response:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "644b0c8b8f1b2c001c8e4d9a",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+---
+
+# User Login Endpoint Documentation
+
+## Endpoint: `/users/login`
+
+### Description:
+This endpoint is used to authenticate an existing user. It validates the input data, checks the credentials, and returns a JSON Web Token (JWT) along with the user details upon successful login.
+
+---
+
+### HTTP Method:
+**POST**
+
+---
+
+### Request Body:
+The following fields are required in the request body:
+
+```json
+{
+  "email": "string (valid email format, required)",
+  "password": "string (min: 6 characters, required)"
+}
+```
+
+#### Error Responses:
+1. **Validation Errors:**
+ - **Status Code:** `400 Bad Request`
+ - **Response Body:**
+   ```json
+   {
+     "errors": [
+       {
+         "msg": "string (error message)",
+         "param": "string (field name)",
+         "location": "string (body)"
+       }
+     ]
+   }
+   ```
+
+2. **Invalid Credentials:**
+ - **Status Code:** `401 Unauthorized`
+ - **Response Body:**
+   ```json
+   {
+     "message": "Invalid email or password"
+   }
+   ```
+
+---
+
+### Example Request:
+
+#### Request Body:
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
 }
 ```
 

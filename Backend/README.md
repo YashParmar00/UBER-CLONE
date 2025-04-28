@@ -143,8 +143,7 @@ The following fields are required in the request body:
 }
 ```
 
----
-
+```
 # User Profile Endpoint Documentation
 
 ## Endpoint: `/users/profile`
@@ -152,17 +151,17 @@ The following fields are required in the request body:
 ### Description:
 This endpoint retrieves the profile information of the authenticated user. It requires a valid JWT token for access.
 
----
+```
 
 ### HTTP Method:
 **GET**
 
 ---
-
+```
 ### Authentication:
 This endpoint requires authentication via a JWT token, which should be included in the request headers or cookies.
 
----
+```
 
 ### Example Request:
 **Headers:**
@@ -180,26 +179,28 @@ Authorization: Bearer <token>
   "email": "john.doe@example.com"
 }
 
----
+```
+```
 
 # User Logout Endpoint Documentation
 
+```
 ## Endpoint: `/users/logout`
 
 ### Description:
 This endpoint logs out the authenticated user by clearing the JWT token from the cookies and blacklisting it to prevent further use.
 
----
+```
 
 ### HTTP Method:
 **GET**
 
----
+```
 
 ### Authentication:
 This endpoint requires authentication via a JWT token, which should be included in the request headers or cookies.
 
----
+```
 
 ### Example Request:
 **Headers:**

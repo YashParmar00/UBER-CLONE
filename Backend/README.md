@@ -1,4 +1,3 @@
-
 # User Registration Endpoint Documentation
 
 ## Endpoint: `/users/register`
@@ -16,7 +15,6 @@ This endpoint is used to register a new user in the system. It validates the inp
 ### Request Body:
 The following fields are required in the request body:
 
-```json
 {
   "fullname": {
     "firstname": "string (min: 3 characters, required)",
@@ -25,13 +23,11 @@ The following fields are required in the request body:
   "email": "string (valid email format, required)",
   "password": "string (min: 6 characters, required)"
 }
-```
 
 #### Error Responses:
 1. **Validation Errors:**
  - **Status Code:** `400 Bad Request`
  - **Response Body:**
-   ```json
    {
      "errors": [
        {
@@ -41,23 +37,19 @@ The following fields are required in the request body:
        }
      ]
    }
-   ```
 
 2. **Missing Required Fields:**
  - **Status Code:** `400 Bad Request`
  - **Response Body:**
-   ```json
    {
      "error": "All fields are required"
    }
-   ```
 
 ---
 
 ### Example Request:
 
 #### Request Body:
-```json
 {
 "fullname": {
   "firstname": "John",
@@ -69,7 +61,6 @@ The following fields are required in the request body:
 ```
 
 #### Example Response:
-```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
@@ -102,18 +93,15 @@ This endpoint is used to authenticate an existing user. It validates the input d
 ### Request Body:
 The following fields are required in the request body:
 
-```json
 {
   "email": "string (valid email format, required)",
   "password": "string (min: 6 characters, required)"
 }
-```
 
 #### Error Responses:
 1. **Validation Errors:**
  - **Status Code:** `400 Bad Request`
  - **Response Body:**
-   ```json
    {
      "errors": [
        {
@@ -123,31 +111,25 @@ The following fields are required in the request body:
        }
      ]
    }
-   ```
 
 2. **Invalid Credentials:**
  - **Status Code:** `401 Unauthorized`
  - **Response Body:**
-   ```json
    {
      "message": "Invalid email or password"
    }
-   ```
 
 ---
 
 ### Example Request:
 
 #### Request Body:
-```json
 {
   "email": "john.doe@example.com",
   "password": "password123"
 }
-```
 
 #### Example Response:
-```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
@@ -158,5 +140,75 @@ The following fields are required in the request body:
     },
     "email": "john.doe@example.com"
   }
+}
+```
+
+---
+
+# User Profile Endpoint Documentation
+
+## Endpoint: `/users/profile`
+
+### Description:
+This endpoint retrieves the profile information of the authenticated user. It requires a valid JWT token for access.
+
+---
+
+### HTTP Method:
+**GET**
+
+---
+
+### Authentication:
+This endpoint requires authentication via a JWT token, which should be included in the request headers or cookies.
+
+---
+
+### Example Request:
+**Headers:**
+```
+Authorization: Bearer <token>
+```
+
+### Example Response:
+{
+  "_id": "644b0c8b8f1b2c001c8e4d9a",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com"
+}
+
+---
+
+# User Logout Endpoint Documentation
+
+## Endpoint: `/users/logout`
+
+### Description:
+This endpoint logs out the authenticated user by clearing the JWT token from the cookies and blacklisting it to prevent further use.
+
+---
+
+### HTTP Method:
+**GET**
+
+---
+
+### Authentication:
+This endpoint requires authentication via a JWT token, which should be included in the request headers or cookies.
+
+---
+
+### Example Request:
+**Headers:**
+```
+Authorization: Bearer <token>
+```
+
+### Example Response:
+{
+  "message": "Logged out successfully"
 }
 ```

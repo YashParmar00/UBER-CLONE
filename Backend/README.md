@@ -180,6 +180,8 @@ Authorization: Bearer <token>
 }
 
 ```
+
+```
 ```
 
 # User Logout Endpoint Documentation

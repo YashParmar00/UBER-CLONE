@@ -327,3 +327,94 @@ This endpoint does not require authentication for registration. However, subsequ
 
 ## Conclusion
 This documentation outlines the registration process for captains in the UBER CLONE backend application. Ensure that all required fields are provided in the correct format to avoid validation errors.
+
+
+
+### Endpoint: `/captains/login`
+- **Description**: This endpoint is used to authenticate an existing captain. It validates the input data and returns a JSON Web Token (JWT) along with the captain details upon successful login.
+- **HTTP Method**: POST
+- **Request Body**:
+  - `email`: string (valid email format, required)
+  - `password`: string (min: 6 characters, required)
+- **Error Responses**:
+  - **Validation Errors**:
+    - **Status Code**: 400 Bad Request
+    - **Response Body**:
+      {
+        "errors": [
+          {
+            "msg": "string (error message)",
+            "param": "string (field name)",
+            "location": "string (body)"
+          }
+        ]
+      }
+  - **Invalid Credentials**:
+    - **Status Code**: 401 Unauthorized
+    - **Response Body**:
+      {
+        "message": "Invalid email or password"
+      }
+- **Example Request**:
+  {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+- **Example Response**:
+  {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "captain": {
+      "_id": "644b0c8b8f1b2c001c8e4d9a",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "XYZ 123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+
+### Endpoint: `/captains/profile`
+- **Description**: This endpoint retrieves the profile information of the authenticated captain. It requires a valid JWT token for access.
+- **HTTP Method**: GET
+- **Authentication**: Requires authentication via a JWT token, which should be included in the request headers.
+- **Example Request**:
+  **Headers**:
+  Authorization: Bearer <token>
+- **Example Response**:
+  {
+    "captain": {
+      "_id": "644b0c8b8f1b2c001c8e4d9a",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "XYZ 123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+
+### Endpoint: `/captains/logout`
+- **Description**: This endpoint logs out the authenticated captain by clearing the JWT token from the cookies and blacklisting it to prevent further use.
+- **HTTP Method**: GET
+- **Authentication**: Requires authentication via a JWT token, which should be included in the request headers.
+- **Example Request**:
+  **Headers**:
+  Authorization: Bearer <token>
+- **Example Response**:
+  {
+    "message": "Logout successfully"
+  }
+
+## Conclusion
+This documentation provides a comprehensive overview of the UBER CLONE backend application, including its structure, setup instructions, and API endpoints. Ensure to follow the guidelines for successful implementation and usage of the application.

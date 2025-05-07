@@ -13,10 +13,9 @@ const paymentRoutes = require('./routes/payment.routes');
 
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: 'https://your-frontend-url.onrender.com', // Replace with your frontend URL
+    origin: 'https://uber-clone-1-4vn5.onrender.com', // Replace with your frontend URL
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
-    credentials: true
   };
 
 connectToDb();

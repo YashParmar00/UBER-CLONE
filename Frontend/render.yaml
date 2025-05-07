@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: uber-clone-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: PORT
+        value: 10000
+    plan: free
+    region: oregon
+    branch: main
+    autoDeploy: true

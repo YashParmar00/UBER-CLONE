@@ -1,16 +1,6 @@
 import React from 'react'
-//suggestions,
-const LocationSearchPanel = ({  setVehiclePanel, setPanelOpen, setPickup, setDestination, activeField }) => {
 
-    const suggestions = [
-        'Location 1',
-        'Location 2',
-        'Location 3',
-        'Location 4',
-        'Location 5',
-        'Location 6',
-        'Location 7'
-    ]
+const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, setDestination, activeField }) => {
 
     const handleSuggestionClick = (suggestion) => {
         if (activeField === 'pickup') {
@@ -18,12 +8,12 @@ const LocationSearchPanel = ({  setVehiclePanel, setPanelOpen, setPickup, setDes
         } else if (activeField === 'destination') {
             setDestination(suggestion)
         }
-        setVehiclePanel(true)
-        setPanelOpen(false)
+        
     }
 
     return (
         <div>
+            
             {/* Display fetched suggestions */}
             {
                 suggestions.map((elem, idx) => (

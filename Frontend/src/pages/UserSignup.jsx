@@ -16,7 +16,7 @@ const UserSignup = () => {
 
 
 
-  const { user, setUser } = useContext(UserDataContext)
+  const { user, setUser  } = useContext(UserDataContext)
 
 
 
@@ -33,6 +33,7 @@ const UserSignup = () => {
     }
 
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+     
 
     if (response.status === 201) {
       const data = response.data
@@ -40,13 +41,14 @@ const UserSignup = () => {
       localStorage.setItem('token', data.token)
       navigate('/home')
     }
+    
 
 
     setEmail('')
     setFirstName('')
     setLastName('')
     setPassword('')
-
+    
   }
   return (
     <div>

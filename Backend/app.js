@@ -11,11 +11,20 @@ const mapRoutes = require('./routes/maps.routes');
 const rideRoutes = require('./routes/ride.routes');
 const paymentRoutes = require('./routes/payment.routes');
 
+// ✅ CORS Configuration
+const corsOptions = {
+  origin: 'https://uber-clone-1-4vn5.onrender.com', // Replace with your frontend domain URL
+  methods: ['GET', 'POST'],  // Allowed HTTP methods
+  credentials: true,  // Enable credentials if using cookies or authorization headers
+};
+
 connectToDb();
 
-app.use(cors());
+// ✅ Apply CORS with options
+app.use(cors(corsOptions));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended:true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/users', userRoutes);
@@ -24,5 +33,4 @@ app.use('/maps', mapRoutes);
 app.use('/rides', rideRoutes);
 app.use('/payment', paymentRoutes);
 
-
-module.exports = app ;
+module.exports = app;

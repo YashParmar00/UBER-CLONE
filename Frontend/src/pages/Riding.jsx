@@ -74,13 +74,14 @@ const Riding = () => {
     }
 
     try {
-      const orderRes = await fetch('http://localhost:4000/payment/create-order', {
+      const orderRes = await fetch('https://uber-clone-vee3.onrender.com/payment/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: ride.fare, rideId: ride._id }),
       });
 
       const order = await orderRes.json();
+      console.log('Order:', order);
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_mPu3WmxDp0lFDJ',

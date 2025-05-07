@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CaptainDetails from '../components/CaptainDetails'
 import RidePopUp from '../components/RidePopUp'
 import { useGSAP } from '@gsap/react'
@@ -12,6 +12,7 @@ import axios from 'axios'
 import LiveTracking from '../components/LiveTracking'
 
 const CaptainHome = () => {
+    const navigate = useNavigate()
 
     const [ ridePopupPanel, setRidePopupPanel ] = useState(false)
     const [ confirmRidePopupPanel, setConfirmRidePopupPanel ] = useState(false)
@@ -66,11 +67,12 @@ const CaptainHome = () => {
         // ✅ Listen for payment success
         socket.on('payment-success', (ride) => {
             setPaymentSuccess(true);
+            navigate('/captain-home');
     
             // Auto hide popup after 3 seconds
             setTimeout(() => {
                 setPaymentSuccess(false);
-            }, 3000);
+            }, 7000);
         });
     
         
@@ -151,7 +153,7 @@ const CaptainHome = () => {
             </div>
 
             {paymentSuccess && (
-    <div className="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+    <div className="absolute bottom-28 right-6 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
         Payment Received 💸
     </div>
 )}

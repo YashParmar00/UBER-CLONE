@@ -91,7 +91,7 @@ const Riding = () => {
         description: 'Ride Payment',
         order_id: order.id,
         handler: async function (response) {
-          const verifyRes = await fetch('http://localhost:4000/payment/verify', {
+          const verifyRes = await fetch('https://uber-clone-vee3.onrender.com/payment/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

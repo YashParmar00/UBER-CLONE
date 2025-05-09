@@ -59,10 +59,10 @@ const Home = () => {
         navigate('/riding', { state: { ride } })
     })
 
-    socket.on('payment-success', ride => {
-        // Navigate to user home
-        navigate('/home');
-    });
+    // socket.on('payment-success', ride => {
+    //     // Navigate to user home
+    //     navigate('/home');
+    // });
 
 
     const handlePickupChange = async (e) => {
